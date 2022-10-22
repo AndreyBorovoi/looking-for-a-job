@@ -13,7 +13,7 @@ export const Banner = () => {
           <div>
             Мена зовут Андрей и я ищу работу
             <br />
-            Мои ключевые навыки:
+            Ключевые навыки:
           </div>
           <div className={styles.skills}>React, Node.js, Typescript</div>
         </div>

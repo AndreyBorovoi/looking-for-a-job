@@ -1,0 +1,68 @@
+.section{
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  @media (min-width: 1200px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.tag{
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  @media (min-width: 1200px) {
+    font-size: 16px;
+  }
+}
+.titleText{
+  font-size: 26px;
+  margin-bottom: 50px;
+  line-height: 120%;
+  font-weight: 500;
+  max-width: 600px;
+
+  @media (min-width: 1200px) {
+    max-width: 700px;
+    font-size: 32px;
+  }
+}
+.points{
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.point{
+  margin-bottom: 20px;
+  @media (min-width: 900px) {
+    width: 230px;
+  }
+  @media (min-width: 1200px) {
+    width: 330px;
+  }
+}
+.pointNumber{
+  font-size: 50px;
+  @media (min-width: 1200px) {
+    font-size: 60px;
+  }
+}
+.pointText{
+  font-size: 25px;
+  @media (min-width: 1200px) {
+    font-size: 35px;
+  }
+}
+.pointDescription{
+  font-size: 16px;
+  @media (min-width: 1200px) {
+    font-size: 22px;
+  }
+}
