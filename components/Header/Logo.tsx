@@ -10,7 +10,7 @@ export const Logo = () => {
       <circle cx="20" cy="16" r="16" fill="#D8D8D8" fill-opacity="0.01" />
       <mask
         id="mask0_0_92"
-        style={{ maskType: "alpha" }}
+        style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="4"
         y="0"
