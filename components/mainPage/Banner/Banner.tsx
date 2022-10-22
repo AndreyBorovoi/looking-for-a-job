@@ -10,7 +10,7 @@ export const Banner = () => {
       <Container className={styles.container}>
         <div className={styles.textBlock}>
           <h1 className={styles.title}>Frontend developer</h1>
-          <div>
+          <div className={styles.text}>
             Мена зовут Андрей и я ищу работу
             <br />
             Ключевые навыки:
