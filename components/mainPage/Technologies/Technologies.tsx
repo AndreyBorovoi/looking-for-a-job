@@ -36,15 +36,15 @@ import strapi from '../../../public/Technologies/strapi.png';
 import styles from './technologies.module.scss';
 
 const first = [
-  <Image src={emotion} alt={'logo'} />,
   <Image src={gastby} alt={'logo'} />,
   <Image src={git} alt={'logo'} />,
-  <Image src={github} alt={'logo'} />,
   // <Image src={google} alt={"logo"} />,
   <Image src={graphql} alt={'logo'} />,
   <Image src={js} alt={'logo'} />,
   <Image src={mui} alt={'logo'} />,
   <Image src={next} alt={'logo'} />,
+  <Image src={emotion} alt={'logo'} />,
+  <Image src={github} alt={'logo'} />,
   <Image src={npm} alt={'logo'} />,
   <Image src={react} alt={'logo'} />,
   <Image src={gitlab} alt={'logo'} />,

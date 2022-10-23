@@ -4,6 +4,7 @@ import { Banner } from '../components/mainPage/Banner';
 import { About } from '../components/mainPage/About';
 import { Skills } from '../components/mainPage/Skills';
 import { Technologies } from '../components/mainPage/Technologies';
+import { Contacts } from '../components/mainPage/Contacts';
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <About />
       <Skills />
       <Technologies />
+      <Contacts />
     </>
   );
 };

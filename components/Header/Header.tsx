@@ -21,7 +21,7 @@ export function Header() {
       <div className={styles.logo}>
         <Logo />
       </div>
-      <FormControl sx={{ minWidth: '70px' }} size="small">
+      {/* <FormControl sx={{ minWidth: '70px' }} size="small">
         <Select
           value={languageContext?.language}
           onChange={handleChange}
@@ -31,7 +31,7 @@ export function Header() {
           <MenuItem value={'en'}>English</MenuItem>
           <MenuItem value={'ru'}>Русский</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
     </Container>
   );
 }
