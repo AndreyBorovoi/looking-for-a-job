@@ -1,0 +1,41 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  background-color: #5D5DFF;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 24px;
+  @media (min-width: 900px) {
+    width: 32%;
+  }
+}
+
+.title{
+  font-size: 32px;
+  line-height: 140%;
+  font-weight: 500;
+  @media (min-width: 900px) {
+    min-height: 90px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 40px;
+    min-height: 115px;
+  }
+}
+
+.list{
+  padding-left: 20px;
+  
+}
+
+.listItem{
+  line-height: 140%;
+  font-size: 22px;
+  list-style-type: square;
+  @media (min-width: 900px) {
+    font-size: 18px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 26px;
+  }
+}

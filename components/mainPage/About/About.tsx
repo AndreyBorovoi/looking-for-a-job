@@ -23,13 +23,13 @@ const points: PointType[] = [
     key: 2,
     number: '2000+',
     text: 'Коммитов',
-    description: 'Решил большое количество бизнес задач',
+    description: <>Решил большое количество бизнес&#8209;задач</>,
   },
   {
     key: 3,
     number: '5+',
     text: 'Лет обучения',
-    description: <>Закончил бакалавриат, не&nbsp;закончил магистратуру</>,
+    description: <>Закончил бакалавриат, почти&nbsp;закончил магистратуру</>,
   },
 ];
 
@@ -59,8 +59,8 @@ export const About = () => {
           <div className={styles.title}>
             <div className={styles.tag}>Опыт</div>
             <div className={styles.titleText}>
-              Обладаю значительным опытом, который помогает мне выполнять
-              поставленные бизнес задачи
+              Обладаю значительным опытом, который помогает выполнять
+              поставленные бизнес&#8209;задачи
             </div>
           </div>
           <div className={styles.points}>
