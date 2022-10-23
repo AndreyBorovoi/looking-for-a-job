@@ -4,7 +4,7 @@ import { Card, CardProps } from './Card';
 import { Eye, Folder, Paper } from './icons';
 import styles from './skills.module.scss';
 
-const cards: Omit<CardProps, 'translateY'>[] = [
+const cards: Omit<CardProps, 'translateY' | 'color'>[] = [
   {
     icon: <Eye />,
     title: 'Личностные качества',
@@ -39,6 +39,8 @@ const cards: Omit<CardProps, 'translateY'>[] = [
   },
 ];
 
+const colors = ['#dee3ff', '#feefd9', '#feeaea'];
+
 export const Skills = () => {
   const [translate, setTranslate] = useState(0);
 
@@ -66,8 +68,13 @@ export const Skills = () => {
   return (
     <section id="Skills" className={styles.section}>
       <Container fixed className={styles.container}>
-        {cards.map((card, index) => (
-          <Card key={index} translateY={translateArray[index]} {...card} />
+        {cards.map((card, i) => (
+          <Card
+            key={i}
+            translateY={translateArray[i]}
+            color={colors[i]}
+            {...card}
+          />
         ))}
       </Container>
     </section>

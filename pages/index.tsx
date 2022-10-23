@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Banner } from '../components/mainPage/Banner';
 import { About } from '../components/mainPage/About';
 import { Skills } from '../components/mainPage/Skills';
+import { Technologies } from '../components/mainPage/Technologies';
 
 const Home: NextPage = () => {
   return (
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
       <Banner />
       <About />
       <Skills />
+      <Technologies />
     </>
   );
 };

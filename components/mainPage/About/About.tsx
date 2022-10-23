@@ -21,7 +21,7 @@ const points: PointType[] = [
   },
   {
     key: 2,
-    number: '2000+',
+    number: '4000+',
     text: 'Коммитов',
     description: <>Решил большое количество бизнес&#8209;задач</>,
   },
