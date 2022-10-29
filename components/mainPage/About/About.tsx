@@ -46,7 +46,7 @@ export const About = () => {
             <div className={styles.tag}>Опыт</div>
             <div className={styles.titleText}>
               Обладаю значительным опытом, который помогает выполнять
-              поставленные бизнес&#8209;задачи
+              бизнес&#8209;задачи
             </div>
           </div>
           <div className={styles.points}>

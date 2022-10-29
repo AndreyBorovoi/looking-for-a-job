@@ -37,7 +37,7 @@ const cards: Omit<CardProps, 'translateY' | 'color'>[] = [
     icon: <Folder />,
     title: 'Hard skills',
     description: '',
-    list: ['Frontend', 'Backend', 'REST API', 'Git', 'Graphql', 'CI/CD'],
+    list: ['Frontend', 'Backend', 'REST API', 'Graphql', 'Git', 'English B1'],
   },
 ];
 
@@ -45,7 +45,7 @@ const colors = ['#dee3ff', '#feefd9', '#feeaea'];
 
 export const Skills = () => {
   const [translate, setTranslate] = useState(0);
-  const visibility = useVisibility('Skills', 0.2);
+  const visibility = useVisibility('Skills', 0.3);
 
   useEffect(() => {
     const callback = (event: Event) => {
