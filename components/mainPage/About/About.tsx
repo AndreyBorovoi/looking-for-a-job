@@ -3,6 +3,8 @@ import { ReactNode, useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
 import Fade from '@mui/material/Fade';
 
+import { useVisibility } from '../../hooks/useVisibility';
+
 import styles from './about.module.scss';
 
 type PointType = {
@@ -34,23 +36,7 @@ const points: PointType[] = [
 ];
 
 export const About = () => {
-  const [visibility, setVisibility] = useState(false);
-
-  useEffect(() => {
-    let options = {
-      root: null,
-      threshold: 0.5,
-    };
-
-    const callback = (entries: any, observer: any) => {
-      if (entries[0].isIntersecting) {
-        setVisibility(true);
-      }
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(document.getElementById('About') as Element);
-  }, []);
+  const visibility = useVisibility('About');
 
   return (
     <section id="About" className={styles.section}>

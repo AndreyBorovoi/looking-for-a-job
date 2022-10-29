@@ -1,5 +1,7 @@
 import Container from '@mui/material/Container';
+import Fade from '@mui/material/Fade';
 import { useEffect, useState } from 'react';
+import { useVisibility } from '../../hooks/useVisibility';
 import { Card, CardProps } from './Card';
 import { Eye, Folder, Paper } from './icons';
 import styles from './skills.module.scss';
@@ -43,6 +45,7 @@ const colors = ['#dee3ff', '#feefd9', '#feeaea'];
 
 export const Skills = () => {
   const [translate, setTranslate] = useState(0);
+  const visibility = useVisibility('Skills', 0.2);
 
   useEffect(() => {
     const callback = (event: Event) => {
@@ -67,16 +70,18 @@ export const Skills = () => {
 
   return (
     <section id="Skills" className={styles.section}>
-      <Container fixed className={styles.container}>
-        {cards.map((card, i) => (
-          <Card
-            key={i}
-            translateY={translateArray[i]}
-            color={colors[i]}
-            {...card}
-          />
-        ))}
-      </Container>
+      <Fade in={visibility} timeout={1500}>
+        <Container fixed className={styles.container}>
+          {cards.map((card, i) => (
+            <Card
+              key={i}
+              translateY={translateArray[i]}
+              color={colors[i]}
+              {...card}
+            />
+          ))}
+        </Container>
+      </Fade>
     </section>
   );
 };

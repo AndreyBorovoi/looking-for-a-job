@@ -1,43 +1,37 @@
 import Container from '@mui/material/Container';
+import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 
+import { useVisibility } from '../../hooks/useVisibility';
+
 import styles from './contacts.module.scss';
-import { useState } from 'react';
-import { createStyleRegistry } from 'styled-jsx';
 
 export const Contacts = () => {
-  const [text, setText] = useState('Поработаем?');
-
-  const onMouseOver = () => {
-    setText('Конечно!');
-  };
-  const onMouseOut = () => {
-    setText('Поработаем?');
-  };
+  const visibility = useVisibility('Contacts', 0.3);
 
   return (
-    <section className={styles.section}>
-      <Container fixed className={styles.container}>
-        <div className={styles.text}>
-          Не удивляйтесь тому, насколько ошеломляюще успешным может быть ваш
-          проект,
-          <br />
-          когда наймете меня
-        </div>
-        <div className={styles.btnOuter}>
-          <Button
-            variant="contained"
-            className={styles.button}
-            onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}
-            target="_blank"
-            href="https://t.me/AndreyBrv"
-          >
-            <div className={styles.text1}>Поработаем?</div>
-            <div className={styles.text2}>Конечно!</div>
-          </Button>
-        </div>
-      </Container>
+    <section id="Contacts" className={styles.section}>
+      <Fade in={visibility} timeout={1500}>
+        <Container fixed className={styles.container}>
+          <div className={styles.text}>
+            Не удивляйтесь тому, насколько ошеломляюще успешным может быть ваш
+            проект,
+            <br />
+            когда наймете меня
+          </div>
+          <div className={styles.btnOuter}>
+            <Button
+              variant="contained"
+              className={styles.button}
+              target="_blank"
+              href="https://t.me/AndreyBrv"
+            >
+              <div className={styles.text1}>Поработаем?</div>
+              <div className={styles.text2}>Конечно!</div>
+            </Button>
+          </div>
+        </Container>
+      </Fade>
     </section>
   );
 };
