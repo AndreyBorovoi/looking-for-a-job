@@ -7,6 +7,7 @@ import { Skills } from '../components/mainPage/Skills';
 import { Technologies } from '../components/mainPage/Technologies';
 import { Management } from '../components/mainPage/Management';
 import { Contacts } from '../components/mainPage/Contacts';
+import { Sourse } from '../components/mainPage/Sourse';
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
       <Technologies />
       <Management />
       <Contacts />
+      <Sourse />
     </>
   );
 };
