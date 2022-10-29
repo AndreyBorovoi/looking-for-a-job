@@ -5,7 +5,7 @@ import { useVisibility } from '../../hooks/useVisibility';
 import styles from './management.module.scss';
 
 export const Management = () => {
-  const visibility = useVisibility('Management');
+  const visibility = useVisibility('Management', 0.3);
 
   return (
     <section id="Management" className={styles.section}>

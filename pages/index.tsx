@@ -6,6 +6,7 @@ import { About } from '../components/mainPage/About';
 import { Skills } from '../components/mainPage/Skills';
 import { Technologies } from '../components/mainPage/Technologies';
 import { Management } from '../components/mainPage/Management';
+import { Location } from '../components/mainPage/Location';
 import { Contacts } from '../components/mainPage/Contacts';
 import { Sourse } from '../components/mainPage/Sourse';
 
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
       <Technologies />
       <Management />
       <Contacts />
+      {/* <Location /> */}
       <Sourse />
     </>
   );
