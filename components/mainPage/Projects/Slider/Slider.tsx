@@ -10,13 +10,10 @@ import { projects } from '../data';
 export const Slider = () => {
   return (
     <Swiper slidesPerView={'auto'} className={styles.slider} loop={true}>
-      {projects.map(({ title, description, href, inProgress, color }, i) => {
+      {projects.map(({ title, description, href, inProgress }, i) => {
         return (
           <SwiperSlide key={i}>
-            <div
-              className={styles.slide}
-              // style={{backgroundColor: color}}
-            >
+            <div className={styles.slide}>
               <div className={styles.text}>
                 <div className={styles.title}>{title}</div>
                 <div className={styles.description}>{description}</div>
