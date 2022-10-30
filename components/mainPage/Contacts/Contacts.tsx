@@ -13,22 +13,24 @@ export const Contacts = () => {
     <section id="Contacts" className={styles.section}>
       <Fade in={visibility} timeout={1500}>
         <Container fixed className={styles.container}>
-          <div className={styles.text}>
-            Не удивляйтесь тому, насколько ошеломляюще успешным может быть ваш
-            проект,
-            <br />
-            когда наймете меня
-          </div>
-          <div className={styles.btnOuter}>
-            <Button
-              variant="contained"
-              className={styles.button}
-              target="_blank"
-              href="https://t.me/AndreyBrv"
-            >
-              <div className={styles.text1}>Поработаем?</div>
-              <div className={styles.text2}>Конечно!</div>
-            </Button>
+          <div className={styles.wrapper}>
+            <div className={styles.text}>
+              Не удивляйтесь тому, насколько ошеломляюще успешным может быть ваш
+              проект,
+              <br />
+              когда наймете меня
+            </div>
+            <div className={styles.btnOuter}>
+              <Button
+                variant="contained"
+                className={styles.button}
+                target="_blank"
+                href="https://t.me/AndreyBrv"
+              >
+                <div className={styles.text1}>Поработаем?</div>
+                <div className={styles.text2}>Конечно!</div>
+              </Button>
+            </div>
           </div>
         </Container>
       </Fade>
