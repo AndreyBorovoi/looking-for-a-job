@@ -1,0 +1,50 @@
+.slider{
+  >:first-child{
+    >div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: unset;
+    }
+  }
+}
+
+.slide{
+  border-radius: 8px;
+  width: 200px;
+  height: 300px;
+  padding: 20px;
+  >*{
+    width: 100%;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: #e8e8e8;
+  border-style: solid;
+  margin-left: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 5px 4px hsl(0deg 0% 64% / 25%);
+}
+
+.title{
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.description{
+  font-size: 18px;
+}
+
+.button{
+  height: 60px;
+  font-size: 18px;
+  // background-color: unset;
+  // border: none;
+  // color: #2e4acd;
+}

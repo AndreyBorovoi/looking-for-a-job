@@ -11,7 +11,7 @@ export const Banner = () => {
         <div className={styles.textBlock}>
           <h1 className={styles.title}>Frontend developer</h1>
           <div className={styles.text}>
-            Мена зовут Андрей и я ищу работу
+            Меня зовут Андрей и я ищу работу
             <br />
             Ключевые навыки:
           </div>
