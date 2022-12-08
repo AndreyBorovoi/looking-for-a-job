@@ -1,18 +1,29 @@
-import { Container } from '@mui/material';
+import Container, { ContainerProps } from '@mui/material/Container';
+import { styled } from '@mui/material/styles';
 
 import store from '../store/store';
 import { Provider } from 'react-redux';
 
+import { Header } from '../Header';
 import { Projects } from '../Projects';
 import { List } from '../List';
+
+const StyledContainer = styled(Container)<ContainerProps>(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+  },
+}));
 
 export const App = () => {
   return (
     <Provider store={store}>
-      <Container fixed>
+      <Header />
+      <StyledContainer fixed>
         <Projects />
         <List />
-      </Container>
+      </StyledContainer>
     </Provider>
   );
 };
