@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 type Task = {
-  id: bigint;
-  parentId?: bigint;
+  id: number;
+  parentId?: number;
   title: string;
   description?: string;
   isDone: boolean;
