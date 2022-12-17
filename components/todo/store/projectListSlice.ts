@@ -1,10 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Project = {
   id: number;
-  parentId: number | null;
   title: string;
-  isDone: boolean;
+};
+
+type AddNewProjectAction = {
+  name: string;
 };
 
 export const projectListSlice = createSlice({
@@ -12,14 +14,18 @@ export const projectListSlice = createSlice({
   initialState: {
     value: {
       selectedProject: null,
-      projects: [
-        { id: 1, isDone: false, title: 'test', parentId: null },
-      ] as Project[],
+      projects: [{ id: 1, title: 'test' }] as Project[],
     },
   },
   reducers: {
     selectProject: (state) => {},
-    addNewProject: (state) => {},
+    addNewProject: (state, action: PayloadAction<AddNewProjectAction>) => {
+      const newProject: Project = {
+        id: Math.max(...state.value.projects.map((value) => value.id)) + 1,
+        title: action.payload.name,
+      };
+      state.value.projects.push(newProject);
+    },
     deleteProject: (state) => {},
   },
 });

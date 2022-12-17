@@ -1,3 +1,4 @@
+import { MouseEventHandler, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 
 import { styled } from '@mui/material/styles';
@@ -9,7 +10,8 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { Project } from './Project';
-import { useState } from 'react';
+
+import { addNewProject } from '../store/projectListSlice';
 
 const StyledProjectsContainer = styled('div')(({ theme }) => ({
   width: '100%',
@@ -56,26 +58,33 @@ export const Projects = () => {
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
+  const [newProjName, setNewProjName] = useState('');
 
-  const addNewProj = () => {};
+  const addNewProj = () => {
+    setIsInputShowed(false);
+    if (newProjName) {
+      dispatch(addNewProject({ name: newProjName }));
+    }
+    setNewProjName('');
+  };
 
   return (
     <StyledProjectsContainer>
       <StyledProjectList>
         {projects.map(({ id, title }) => {
           return (
-            <Project
-              key={Number(id)}
-              title={title}
-              selected={id === selectedProject}
-            />
+            <Project key={id} title={title} selected={id === selectedProject} />
           );
         })}
       </StyledProjectList>
       {isInputShowed ? (
         <StyledNewProjectName>
-          <StyledNewProjectNameInput maxLength={20} />
-          <DoneIcon style={{ marginLeft: '20px' }} />
+          <StyledNewProjectNameInput
+            maxLength={30}
+            value={newProjName}
+            onChange={(e) => setNewProjName(e.target.value)}
+          />
+          <DoneIcon style={{ marginLeft: '20px' }} onClick={addNewProj} />
           <CloseIcon
             style={{ marginLeft: '20px' }}
             onClick={() => setIsInputShowed(false)}
