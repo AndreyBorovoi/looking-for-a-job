@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import { Header } from '../Header';
 import { Projects } from '../Projects';
-import { List } from '../List';
+import { TaskList } from '../TaskList';
 
 const StyledContainer = styled(Container)<ContainerProps>(({ theme }) => ({
   display: 'flex',
@@ -22,7 +22,7 @@ export const App = () => {
       <Header />
       <StyledContainer fixed>
         <Projects />
-        <List />
+        <TaskList />
       </StyledContainer>
     </Provider>
   );

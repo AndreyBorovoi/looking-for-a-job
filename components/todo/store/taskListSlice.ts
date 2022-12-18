@@ -1,19 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type Task = {
+export type Task = {
   id: number;
-  parentId?: number;
+  // parentId: number|null;
+  projectId: number;
   title: string;
-  description?: string;
+  // description: string|null;
   isDone: boolean;
-  tags: string[];
-  date?: Date;
+  // tags: string[];
+  // date: Date|null;
 };
 
 export const taskListSlice = createSlice({
   name: 'taskList',
   initialState: {
-    value: [] as Task[],
+    value: {
+      taskList: [
+        { id: 1, projectId: 1, title: 'test task', isDone: false },
+      ] as Task[],
+    },
   },
   reducers: {
     addNewTask: (state) => {},

@@ -13,13 +13,13 @@ export const projectListSlice = createSlice({
   name: 'projectList',
   initialState: {
     value: {
-      selectedProject: null as Project['id'] | null,
+      selectedProjectId: null as Project['id'] | null,
       projects: [{ id: 1, title: 'test' }] as Project[],
     },
   },
   reducers: {
     selectProject: (state, action: PayloadAction<SelectProjectAction>) => {
-      state.value.selectedProject = action.payload.id;
+      state.value.selectedProjectId = action.payload.id;
     },
     addNewProject: (state, action: PayloadAction<AddNewProjectAction>) => {
       const newProject: Project = {
