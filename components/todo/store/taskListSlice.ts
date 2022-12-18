@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Task = {
   id: number;
@@ -11,6 +11,8 @@ export type Task = {
   // date: Date|null;
 };
 
+type AddNewTaskAction = Pick<Task, 'projectId'>;
+
 export const taskListSlice = createSlice({
   name: 'taskList',
   initialState: {
@@ -21,7 +23,17 @@ export const taskListSlice = createSlice({
     },
   },
   reducers: {
-    addNewTask: (state) => {},
+    addNewTask: (state, action: PayloadAction<AddNewTaskAction>) => {
+      const newId =
+        Math.max(...state.value.taskList.map((task) => task.id)) + 1;
+      const newTask = {
+        id: newId,
+        isDone: false,
+        projectId: action.payload.projectId,
+        title: 'Новая задача',
+      };
+      state.value.taskList.push(newTask);
+    },
     deleteTask: (state) => {},
   },
 });

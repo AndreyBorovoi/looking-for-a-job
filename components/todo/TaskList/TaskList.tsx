@@ -1,6 +1,9 @@
 import { styled } from '@mui/material/styles';
+import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { addNewTask } from '../store/taskListSlice';
 
 import { Empty } from './Empty';
 import { Task } from './Task';
@@ -31,6 +34,15 @@ const StyledTaskList = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }));
 
+const StyledAddTaskButton = styled(Button)(({ theme }) => ({
+  width: '50px',
+  height: '50px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}));
+
 export const TaskList = () => {
   const { selectedProjectId, projects } = useAppSelector(
     (state) => state.projectList.value
@@ -42,10 +54,6 @@ export const TaskList = () => {
     (proj) => proj.id === selectedProjectId
   );
 
-  const selectedTasks = taskList.filter(
-    (task) => task.projectId === selectedProjectId
-  );
-
   if (!selectedProject) {
     return (
       <StyledTaskListContainer>
@@ -54,14 +62,25 @@ export const TaskList = () => {
     );
   }
 
+  const selectedTasks = taskList.filter(
+    (task) => task.projectId === selectedProjectId
+  );
+
+  const createNewTask = () => {
+    dispatch(addNewTask({ projectId: selectedProjectId! }));
+  };
+
   return (
     <StyledTaskListContainer>
-      <StyledSelectedProject>{selectedProject?.title}</StyledSelectedProject>
+      <StyledSelectedProject>{selectedProject.title}</StyledSelectedProject>
       <StyledTaskList>
         {selectedTasks.map((task) => {
           return <Task key={task.id} {...task} />;
         })}
       </StyledTaskList>
+      <StyledAddTaskButton variant="contained" onClick={createNewTask}>
+        <AddIcon />
+      </StyledAddTaskButton>
     </StyledTaskListContainer>
   );
 };
