@@ -5,24 +5,26 @@ export type Project = {
   title: string;
 };
 
-type AddNewProjectAction = {
-  name: string;
-};
+type SelectProjectAction = Pick<Project, 'id'>;
+
+type AddNewProjectAction = Pick<Project, 'title'>;
 
 export const projectListSlice = createSlice({
   name: 'projectList',
   initialState: {
     value: {
-      selectedProject: null,
+      selectedProject: null as Project['id'] | null,
       projects: [{ id: 1, title: 'test' }] as Project[],
     },
   },
   reducers: {
-    selectProject: (state) => {},
+    selectProject: (state, action: PayloadAction<SelectProjectAction>) => {
+      state.value.selectedProject = action.payload.id;
+    },
     addNewProject: (state, action: PayloadAction<AddNewProjectAction>) => {
       const newProject: Project = {
         id: Math.max(...state.value.projects.map((value) => value.id)) + 1,
-        title: action.payload.name,
+        title: action.payload.title,
       };
       state.value.projects.push(newProject);
     },
@@ -30,6 +32,7 @@ export const projectListSlice = createSlice({
   },
 });
 
-export const { addNewProject, deleteProject } = projectListSlice.actions;
+export const { addNewProject, deleteProject, selectProject } =
+  projectListSlice.actions;
 
 export default projectListSlice.reducer;

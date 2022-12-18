@@ -12,6 +12,15 @@ const darkTheme = createTheme({
   palette: {
     mode: 'light',
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
+  },
 });
 
 interface MyAppProps extends AppProps {

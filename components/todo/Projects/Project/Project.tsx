@@ -1,9 +1,11 @@
+import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
-export type ProjectProps = {
-  title: string;
-  selected: boolean;
-};
+import {
+  selectProject,
+  Project as ProjectType,
+} from '../../store/projectListSlice';
+import { useAppDispatch } from '../../store/hooks';
 
 const StyledProject = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -15,15 +17,21 @@ const StyledProject = styled('div')(({ theme }) => ({
   marginBottom: '10px',
 }));
 
-const StyledProjectName = styled('div')(({ theme }) => ({
+const StyledProjectName = styled(Button)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
 }));
 
-export const Project = ({ title, selected }: ProjectProps) => {
+export const Project = ({ id, title }: ProjectType) => {
+  const dispatch = useAppDispatch();
+
+  const onClick = () => {
+    dispatch(selectProject({ id: id }));
+  };
+
   return (
     <StyledProject>
-      <StyledProjectName>{title}</StyledProjectName>
+      <StyledProjectName onClick={onClick}>{title}</StyledProjectName>
     </StyledProject>
   );
 };

@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 
 import { styled } from '@mui/material/styles';
@@ -52,9 +52,7 @@ const StyledNewProjectNameInput = styled('input')(({ theme }) => ({
 }));
 
 export const Projects = () => {
-  const { selectedProject, projects } = useAppSelector(
-    (state) => state.projectList.value
-  );
+  const { projects } = useAppSelector((state) => state.projectList.value);
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
@@ -63,18 +61,16 @@ export const Projects = () => {
   const addNewProj = () => {
     setIsInputShowed(false);
     if (newProjName) {
-      dispatch(addNewProject({ name: newProjName }));
+      dispatch(addNewProject({ title: newProjName }));
+      setNewProjName('');
     }
-    setNewProjName('');
   };
 
   return (
     <StyledProjectsContainer>
       <StyledProjectList>
         {projects.map(({ id, title }) => {
-          return (
-            <Project key={id} title={title} selected={id === selectedProject} />
-          );
+          return <Project key={id} title={title} id={id} />;
         })}
       </StyledProjectList>
       {isInputShowed ? (
