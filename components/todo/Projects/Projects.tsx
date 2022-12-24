@@ -34,7 +34,7 @@ const StyledAddNewProject = styled(Button)(({ theme }) => ({
   height: '35px',
 }));
 
-const StyledNewProjectName = styled('div')(({ theme }) => ({
+const StyledNewProjectTitle = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'row',
@@ -43,7 +43,7 @@ const StyledNewProjectName = styled('div')(({ theme }) => ({
   height: '35px',
 }));
 
-const StyledNewProjectNameInput = styled('input')(({ theme }) => ({
+const StyledNewProjectInput = styled('input')(({ theme }) => ({
   width: '100%',
   maxWidth: '250px',
   marginRight: '10px',
@@ -56,13 +56,13 @@ export const Projects = () => {
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
-  const [newProjName, setNewProjName] = useState('');
+  const [newProjectTitle, setNewProjectTitle] = useState('');
 
   const addNewProj = () => {
     setIsInputShowed(false);
-    if (newProjName) {
-      dispatch(addNewProject({ title: newProjName }));
-      setNewProjName('');
+    if (newProjectTitle) {
+      dispatch(addNewProject({ title: newProjectTitle }));
+      setNewProjectTitle('');
     }
   };
 
@@ -74,18 +74,18 @@ export const Projects = () => {
         })}
       </StyledProjectList>
       {isInputShowed ? (
-        <StyledNewProjectName>
-          <StyledNewProjectNameInput
+        <StyledNewProjectTitle>
+          <StyledNewProjectInput
             maxLength={30}
-            value={newProjName}
-            onChange={(e) => setNewProjName(e.target.value)}
+            value={newProjectTitle}
+            onChange={(e) => setNewProjectTitle(e.target.value)}
           />
           <DoneIcon style={{ marginLeft: '20px' }} onClick={addNewProj} />
           <CloseIcon
             style={{ marginLeft: '20px' }}
             onClick={() => setIsInputShowed(false)}
           />
-        </StyledNewProjectName>
+        </StyledNewProjectTitle>
       ) : (
         <StyledAddNewProject onClick={() => setIsInputShowed(true)}>
           <AddIcon

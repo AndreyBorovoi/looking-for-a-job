@@ -8,7 +8,7 @@ import createEmotionCache from '../utility/createEmotionCache';
 
 const clientSideEmotionCache = createEmotionCache();
 
-const darkTheme = createTheme({
+const theme = createTheme({
   palette: {
     mode: 'light',
   },
@@ -34,7 +34,7 @@ function MyApp({
 }: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Language>
           <Analytics />

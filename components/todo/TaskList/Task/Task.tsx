@@ -27,7 +27,7 @@ const StyledTask = styled('div')(({ theme }) => ({
   width: '100%',
 }));
 
-const StyledTaskName = styled(Button)(({ theme }) => ({
+const StyledTaskTitle = styled(Button)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'left',
   overflow: 'hidden',
@@ -41,7 +41,7 @@ const StyledCheckbox = styled(Checkbox)(({ theme }) => ({
   marginRight: '20px',
 }));
 
-const StyledNameInput = styled(TextField)(({ theme }) => ({
+const StyledInput = styled(TextField)(({ theme }) => ({
   flexGrow: 1,
 }));
 
@@ -53,18 +53,18 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
-  const [newName, setNewName] = useState(title);
+  const [newTitle, setNewTitle] = useState(title);
 
   useEffect(() => {
-    setNewName(title);
+    setNewTitle(title);
   }, [title]);
 
   const onCheckboxClick = () => {
     dispatch(changeStatus({ id: id }));
   };
 
-  const onNameInputBlur = () => {
-    dispatch(changeTitle({ id: id, title: newName }));
+  const onTitleInputBlur = () => {
+    dispatch(changeTitle({ id: id, title: newTitle }));
     setIsInputShowed(false);
   };
 
@@ -81,7 +81,7 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
   const onTitleChange: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = (event) => {
-    setNewName(event.target.value);
+    setNewTitle(event.target.value);
   };
 
   const onDeleteTask = () => {
@@ -92,17 +92,17 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
     <StyledTask>
       <StyledCheckbox checked={isDone} onClick={onCheckboxClick} />
       {isInputShowed ? (
-        <StyledNameInput
+        <StyledInput
           variant="standard"
-          onBlur={onNameInputBlur}
+          onBlur={onTitleInputBlur}
           ref={focusOnInput}
-          value={newName}
+          value={newTitle}
           onChange={onTitleChange}
         />
       ) : (
-        <StyledTaskName onClick={() => setIsInputShowed(true)}>
+        <StyledTaskTitle onClick={() => setIsInputShowed(true)}>
           {title}
-        </StyledTaskName>
+        </StyledTaskTitle>
       )}
       <StyledDeleteIcon onClick={onDeleteTask} />
     </StyledTask>
