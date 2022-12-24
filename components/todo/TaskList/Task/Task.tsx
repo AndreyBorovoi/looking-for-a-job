@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 
 import { Task as TaskProps } from '../../store/taskListSlice';
 
@@ -46,7 +46,6 @@ const StyledNameInput = styled(TextField)(({ theme }) => ({
 }));
 
 const StyledDeleteIcon = styled(BackspaceIcon)(({ theme }) => ({
-  justifySelf: 'flex-end',
   marginLeft: '30px',
 }));
 
@@ -55,6 +54,10 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
 
   const [isInputShowed, setIsInputShowed] = useState(false);
   const [newName, setNewName] = useState(title);
+
+  useEffect(() => {
+    setNewName(title);
+  }, [title]);
 
   const onCheckboxClick = () => {
     dispatch(changeStatus({ id: id }));

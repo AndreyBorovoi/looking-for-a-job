@@ -9,6 +9,10 @@ type SelectProjectAction = Pick<Project, 'id'>;
 
 type AddNewProjectAction = Pick<Project, 'title'>;
 
+type DeleteProjectAction = Pick<Project, 'id'>;
+
+type ChangeProjectTitleAction = Pick<Project, 'id' | 'title'>;
+
 export const projectListSlice = createSlice({
   name: 'projectList',
   initialState: {
@@ -28,11 +32,31 @@ export const projectListSlice = createSlice({
       };
       state.value.projects.push(newProject);
     },
-    deleteProject: (state) => {},
+    deleteProject: (state, action: PayloadAction<DeleteProjectAction>) => {
+      state.value.selectedProjectId = null;
+      state.value.projects = state.value.projects.filter(
+        (v) => v.id !== action.payload.id
+      );
+    },
+    changeProjectTitle: (
+      state,
+      action: PayloadAction<ChangeProjectTitleAction>
+    ) => {
+      const project = state.value.projects.find(
+        (v) => v.id === action.payload.id
+      );
+      if (project) {
+        project.title = action.payload.title;
+      }
+    },
   },
 });
 
-export const { addNewProject, deleteProject, selectProject } =
-  projectListSlice.actions;
+export const {
+  addNewProject,
+  deleteProject,
+  selectProject,
+  changeProjectTitle,
+} = projectListSlice.actions;
 
 export default projectListSlice.reducer;
