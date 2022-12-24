@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import {
   selectProject,
   Project as ProjectType,
-} from '../../store/projectListSlice';
+} from '../../store/projectsSlice';
 import { useAppDispatch } from '../../store/hooks';
 
 const StyledProject = styled('div')(({ theme }) => ({

@@ -4,8 +4,8 @@ import { Button, Container, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { addNewTask, deleteTasksByProjectId } from '../store/taskListSlice';
-import { deleteProject, changeProjectTitle } from '../store/projectListSlice';
+import { addNewTask, deleteTasksByProjectId } from '../store/tasksSlice';
+import { deleteProject, changeProjectTitle } from '../store/projectsSlice';
 
 import { Empty } from './Empty';
 import { Task } from './Task';
@@ -68,13 +68,11 @@ const StyledAddTaskButton = styled(Button)(({ theme }) => ({
 }));
 
 export const TaskList = () => {
-  const { selectedProjectId, projects } = useAppSelector(
-    (state) => state.projectList.value
+  const { selectedProjectId, projectList } = useAppSelector(
+    (state) => state.projects
   );
-  const selectedProject = projects.find(
-    (proj) => proj.id === selectedProjectId
-  );
-  const { taskList } = useAppSelector((state) => state.tasktList.value);
+  const selectedProject = projectList.find((v) => v.id === selectedProjectId);
+  const { taskList } = useAppSelector((state) => state.taskts);
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
@@ -85,14 +83,6 @@ export const TaskList = () => {
       setNewTitle(selectedProject.title);
     }
   }, [selectedProject?.title]);
-
-  if (!selectedProject) {
-    return (
-      <StyledTaskListContainer>
-        <Empty />
-      </StyledTaskListContainer>
-    );
-  }
 
   const selectedTasks = taskList.filter(
     (task) => task.projectId === selectedProjectId
@@ -127,6 +117,14 @@ export const TaskList = () => {
     dispatch(deleteProject({ id: selectedProjectId! }));
     dispatch(deleteTasksByProjectId({ projectId: selectedProjectId! }));
   };
+
+  if (!selectedProject) {
+    return (
+      <StyledTaskListContainer>
+        <Empty />
+      </StyledTaskListContainer>
+    );
+  }
 
   return (
     <StyledTaskListContainer fixed>

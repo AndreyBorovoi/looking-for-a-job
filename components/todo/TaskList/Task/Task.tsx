@@ -1,7 +1,5 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
 
-import { Task as TaskProps } from '../../store/taskListSlice';
-
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -14,7 +12,8 @@ import {
   changeStatus,
   changeTitle,
   deleteTask,
-} from '../../store/taskListSlice';
+  Task as TaskProps,
+} from '../../store/tasksSlice';
 
 const StyledTask = styled('div')(({ theme }) => ({
   display: 'flex',

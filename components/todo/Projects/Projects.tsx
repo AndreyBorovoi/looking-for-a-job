@@ -11,7 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { Project } from './Project';
 
-import { addNewProject } from '../store/projectListSlice';
+import { addNewProject } from '../store/projectsSlice';
 
 const StyledProjectsContainer = styled('div')(({ theme }) => ({
   width: '100%',
@@ -52,7 +52,7 @@ const StyledNewProjectInput = styled('input')(({ theme }) => ({
 }));
 
 export const Projects = () => {
-  const { projects } = useAppSelector((state) => state.projectList.value);
+  const { projectList } = useAppSelector((state) => state.projects);
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
@@ -69,7 +69,7 @@ export const Projects = () => {
   return (
     <StyledProjectsContainer>
       <StyledProjectList>
-        {projects.map(({ id, title }) => {
+        {projectList.map(({ id, title }) => {
           return <Project key={id} title={title} id={id} />;
         })}
       </StyledProjectList>

@@ -17,40 +17,35 @@ type DeleteTaskAction = Pick<Task, 'id'>;
 type ChangeTitleAction = Pick<Task, 'id' | 'title'>;
 type DeleteTasksByProjectIdAction = Pick<Task, 'projectId'>;
 
-export const taskListSlice = createSlice({
-  name: 'taskList',
+export const tasksSlice = createSlice({
+  name: 'tasks',
   initialState: {
-    value: {
-      taskList: [
-        { id: 1, projectId: 1, title: 'test task', isDone: false },
-      ] as Task[],
-    },
+    taskList: [
+      { id: 1, projectId: 1, title: 'test task', isDone: false },
+    ] as Task[],
   },
   reducers: {
     addNewTask: (state, action: PayloadAction<AddNewTaskAction>) => {
-      const ids = state.value.taskList.map((task) => task.id);
-      const newId = ids.length > 0 ? Math.max(...ids) + 1 : 0;
+      const ids = state.taskList.map((task) => task.id);
       const newTask = {
-        id: newId,
+        id: ids.length > 0 ? Math.max(...ids) + 1 : 0,
         isDone: false,
         projectId: action.payload.projectId,
         title: 'Новая задача',
       };
-      state.value.taskList.push(newTask);
+      state.taskList.push(newTask);
     },
     deleteTask: (state, action: PayloadAction<DeleteTaskAction>) => {
-      state.value.taskList = state.value.taskList.filter(
-        (v) => v.id !== action.payload.id
-      );
+      state.taskList = state.taskList.filter((v) => v.id !== action.payload.id);
     },
     changeStatus: (state, action: PayloadAction<ChangeStatusAction>) => {
-      const task = state.value.taskList.find((v) => v.id === action.payload.id);
+      const task = state.taskList.find((v) => v.id === action.payload.id);
       if (task) {
         task.isDone = !task.isDone;
       }
     },
     changeTitle: (state, action: PayloadAction<ChangeTitleAction>) => {
-      const task = state.value.taskList.find((v) => v.id === action.payload.id);
+      const task = state.taskList.find((v) => v.id === action.payload.id);
       if (task) {
         task.title = action.payload.title;
       }
@@ -59,7 +54,7 @@ export const taskListSlice = createSlice({
       state,
       action: PayloadAction<DeleteTasksByProjectIdAction>
     ) => {
-      state.value.taskList = state.value.taskList.filter(
+      state.taskList = state.taskList.filter(
         (v) => v.projectId !== action.payload.projectId
       );
     },
@@ -72,6 +67,6 @@ export const {
   changeStatus,
   changeTitle,
   deleteTasksByProjectId,
-} = taskListSlice.actions;
+} = tasksSlice.actions;
 
-export default taskListSlice.reducer;
+export default tasksSlice.reducer;

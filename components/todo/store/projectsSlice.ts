@@ -13,28 +13,27 @@ type DeleteProjectAction = Pick<Project, 'id'>;
 
 type ChangeProjectTitleAction = Pick<Project, 'id' | 'title'>;
 
-export const projectListSlice = createSlice({
-  name: 'projectList',
+export const projectsSlice = createSlice({
+  name: 'projects',
   initialState: {
-    value: {
-      selectedProjectId: null as Project['id'] | null,
-      projects: [{ id: 1, title: 'test' }] as Project[],
-    },
+    selectedProjectId: null as Project['id'] | null,
+    projectList: [{ id: 1, title: 'test' }] as Project[],
   },
   reducers: {
     selectProject: (state, action: PayloadAction<SelectProjectAction>) => {
-      state.value.selectedProjectId = action.payload.id;
+      state.selectedProjectId = action.payload.id;
     },
     addNewProject: (state, action: PayloadAction<AddNewProjectAction>) => {
+      const ids = state.projectList.map((value) => value.id);
       const newProject: Project = {
-        id: Math.max(...state.value.projects.map((value) => value.id)) + 1,
+        id: ids.length > 0 ? Math.max(...ids) + 1 : 0,
         title: action.payload.title,
       };
-      state.value.projects.push(newProject);
+      state.projectList.push(newProject);
     },
     deleteProject: (state, action: PayloadAction<DeleteProjectAction>) => {
-      state.value.selectedProjectId = null;
-      state.value.projects = state.value.projects.filter(
+      state.selectedProjectId = null;
+      state.projectList = state.projectList.filter(
         (v) => v.id !== action.payload.id
       );
     },
@@ -42,9 +41,7 @@ export const projectListSlice = createSlice({
       state,
       action: PayloadAction<ChangeProjectTitleAction>
     ) => {
-      const project = state.value.projects.find(
-        (v) => v.id === action.payload.id
-      );
+      const project = state.projectList.find((v) => v.id === action.payload.id);
       if (project) {
         project.title = action.payload.title;
       }
@@ -57,6 +54,6 @@ export const {
   deleteProject,
   selectProject,
   changeProjectTitle,
-} = projectListSlice.actions;
+} = projectsSlice.actions;
 
-export default projectListSlice.reducer;
+export default projectsSlice.reducer;
