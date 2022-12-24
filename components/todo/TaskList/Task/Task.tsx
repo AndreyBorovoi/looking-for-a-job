@@ -3,6 +3,7 @@ import { ChangeEventHandler, useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 
 import { styled } from '@mui/material/styles';
@@ -44,10 +45,6 @@ const StyledInput = styled(TextField)(({ theme }) => ({
   flexGrow: 1,
 }));
 
-const StyledDeleteIcon = styled(BackspaceIcon)(({ theme }) => ({
-  marginLeft: '30px',
-}));
-
 export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
   const dispatch = useAppDispatch();
 
@@ -63,18 +60,12 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
   };
 
   const onTitleInputBlur = () => {
-    dispatch(changeTitle({ id: id, title: newTitle }));
-    setIsInputShowed(false);
-  };
-
-  const focusOnInput: (instance: HTMLDivElement | null) => void = (
-    instance
-  ) => {
-    const inputs = instance?.getElementsByTagName('input');
-
-    if (inputs && inputs[0]) {
-      inputs[0].focus();
+    if (newTitle) {
+      dispatch(changeTitle({ id: id, title: newTitle }));
+    } else {
+      setNewTitle(title);
     }
+    setIsInputShowed(false);
   };
 
   const onTitleChange: ChangeEventHandler<
@@ -94,16 +85,23 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
         <StyledInput
           variant="standard"
           onBlur={onTitleInputBlur}
-          ref={focusOnInput}
           value={newTitle}
           onChange={onTitleChange}
+          autoFocus
+          error={newTitle.length === 0}
         />
       ) : (
         <StyledTaskTitle onClick={() => setIsInputShowed(true)}>
           {title}
         </StyledTaskTitle>
       )}
-      <StyledDeleteIcon onClick={onDeleteTask} />
+      <IconButton
+        onClick={onDeleteTask}
+        style={{ marginLeft: '30px' }}
+        color="default"
+      >
+        <BackspaceIcon />
+      </IconButton>
     </StyledTask>
   );
 };

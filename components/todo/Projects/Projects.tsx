@@ -4,6 +4,8 @@ import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { styled } from '@mui/material/styles';
 
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 
 import DoneIcon from '@mui/icons-material/Done';
@@ -43,7 +45,7 @@ const StyledNewProjectTitle = styled('div')(({ theme }) => ({
   height: '35px',
 }));
 
-const StyledNewProjectInput = styled('input')(({ theme }) => ({
+const StyledNewProjectInput = styled(TextField)(({ theme }) => ({
   width: '100%',
   maxWidth: '250px',
   marginRight: '10px',
@@ -76,15 +78,27 @@ export const Projects = () => {
       {isInputShowed ? (
         <StyledNewProjectTitle>
           <StyledNewProjectInput
-            maxLength={30}
+            autoFocus
+            variant="standard"
             value={newProjectTitle}
             onChange={(e) => setNewProjectTitle(e.target.value)}
+            error={newProjectTitle.length === 0}
           />
-          <DoneIcon style={{ marginLeft: '20px' }} onClick={addNewProj} />
-          <CloseIcon
+          <IconButton
             style={{ marginLeft: '20px' }}
+            color="success"
+            disabled={newProjectTitle.length === 0}
+            onClick={addNewProj}
+          >
+            <DoneIcon />
+          </IconButton>
+          <IconButton
+            style={{ marginLeft: '20px' }}
+            color="error"
             onClick={() => setIsInputShowed(false)}
-          />
+          >
+            <CloseIcon />
+          </IconButton>
         </StyledNewProjectTitle>
       ) : (
         <StyledAddNewProject onClick={() => setIsInputShowed(true)}>

@@ -93,18 +93,14 @@ export const TaskList = () => {
   };
 
   const onTitleInputBlur = () => {
-    dispatch(changeProjectTitle({ id: selectedProjectId!, title: newTitle! }));
-    setIsInputShowed(false);
-  };
-
-  const focusOnInput: (instance: HTMLDivElement | null) => void = (
-    instance
-  ) => {
-    const inputs = instance?.getElementsByTagName('input');
-
-    if (inputs && inputs[0]) {
-      inputs[0].focus();
+    if (newTitle) {
+      dispatch(
+        changeProjectTitle({ id: selectedProjectId!, title: newTitle! })
+      );
+    } else {
+      setNewTitle(selectedProject!.title!);
     }
+    setIsInputShowed(false);
   };
 
   const onChangeProjectTitle: ChangeEventHandler<
@@ -133,9 +129,10 @@ export const TaskList = () => {
           <StyledSelectedProjectTitleInput
             variant="standard"
             onBlur={onTitleInputBlur}
-            ref={focusOnInput}
+            autoFocus
             value={newTitle}
             onChange={onChangeProjectTitle}
+            error={newTitle.length === 0}
           />
         ) : (
           <StyledSelectedProjectTitle onClick={() => setIsInputShowed(true)}>
