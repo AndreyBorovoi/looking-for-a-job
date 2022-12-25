@@ -11,7 +11,7 @@ export type Task = {
   // date: Date|null;
 };
 
-type AddNewTaskAction = Pick<Task, 'projectId'>;
+type AddNewTaskAction = Pick<Task, 'projectId' | 'title'>;
 type ChangeStatusAction = Pick<Task, 'id'>;
 type DeleteTaskAction = Pick<Task, 'id'>;
 type ChangeTitleAction = Pick<Task, 'id' | 'title'>;
@@ -31,7 +31,7 @@ export const tasksSlice = createSlice({
         id: ids.length > 0 ? Math.max(...ids) + 1 : 0,
         isDone: false,
         projectId: action.payload.projectId,
-        title: 'Новая задача',
+        title: action.payload.title,
       };
       state.taskList.push(newTask);
     },

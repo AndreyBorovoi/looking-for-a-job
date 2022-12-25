@@ -1,7 +1,15 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
+
 import { styled } from '@mui/material/styles';
-import { Button, Container, TextField } from '@mui/material';
+
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
+
 import AddIcon from '@mui/icons-material/Add';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { addNewTask, deleteTasksByProjectId } from '../store/tasksSlice';
@@ -58,6 +66,23 @@ const StyledTaskList = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }));
 
+const StyledNewTaskTitle = styled('div')(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '35px',
+}));
+
+const StyledNewTaskInput = styled(TextField)(({ theme }) => ({
+  width: '100%',
+  maxWidth: '250px',
+  marginRight: '10px',
+  marginLeft: '10px',
+  fontSize: '20px',
+}));
+
 const StyledAddTaskButton = styled(Button)(({ theme }) => ({
   width: '50px',
   height: '50px',
@@ -75,12 +100,15 @@ export const TaskList = () => {
   const { taskList } = useAppSelector((state) => state.taskts);
   const dispatch = useAppDispatch();
 
-  const [isInputShowed, setIsInputShowed] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
+  const [isProjectInputShowed, setIsProjectInputShowed] = useState(false);
+  const [newProjectTitle, setNewProjectTitle] = useState('');
+
+  const [isTaskInputShowed, setIsTaskInputShowed] = useState(false);
+  const [newTaskTitle, setNewTaskTitle] = useState('');
 
   useEffect(() => {
     if (selectedProject?.title) {
-      setNewTitle(selectedProject.title);
+      setNewProjectTitle(selectedProject.title);
     }
   }, [selectedProject?.title]);
 
@@ -88,30 +116,34 @@ export const TaskList = () => {
     (task) => task.projectId === selectedProjectId
   );
 
-  const onCreateNewTask = () => {
-    dispatch(addNewTask({ projectId: selectedProjectId! }));
-  };
-
   const onTitleInputBlur = () => {
-    if (newTitle) {
+    if (newProjectTitle) {
       dispatch(
-        changeProjectTitle({ id: selectedProjectId!, title: newTitle! })
+        changeProjectTitle({ id: selectedProjectId!, title: newProjectTitle! })
       );
     } else {
-      setNewTitle(selectedProject!.title!);
+      setNewProjectTitle(selectedProject!.title!);
     }
-    setIsInputShowed(false);
+    setIsProjectInputShowed(false);
   };
 
   const onChangeProjectTitle: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = (event) => {
-    setNewTitle(event.target.value);
+    setNewProjectTitle(event.target.value);
   };
 
   const onDeleteProject = () => {
     dispatch(deleteProject({ id: selectedProjectId! }));
     dispatch(deleteTasksByProjectId({ projectId: selectedProjectId! }));
+  };
+
+  const onCreateNewTask = () => {
+    dispatch(
+      addNewTask({ projectId: selectedProjectId!, title: newTaskTitle })
+    );
+    setNewTaskTitle('');
+    setIsTaskInputShowed(false);
   };
 
   if (!selectedProject) {
@@ -125,17 +157,19 @@ export const TaskList = () => {
   return (
     <StyledTaskListContainer fixed>
       <StyledSelectedProject>
-        {isInputShowed ? (
+        {isProjectInputShowed ? (
           <StyledSelectedProjectTitleInput
             variant="standard"
             onBlur={onTitleInputBlur}
             autoFocus
-            value={newTitle}
+            value={newProjectTitle}
             onChange={onChangeProjectTitle}
-            error={newTitle.length === 0}
+            error={newProjectTitle.length === 0}
           />
         ) : (
-          <StyledSelectedProjectTitle onClick={() => setIsInputShowed(true)}>
+          <StyledSelectedProjectTitle
+            onClick={() => setIsProjectInputShowed(true)}
+          >
             {selectedProject.title}
           </StyledSelectedProjectTitle>
         )}
@@ -150,9 +184,41 @@ export const TaskList = () => {
           return <Task key={task.id} {...task} />;
         })}
       </StyledTaskList>
-      <StyledAddTaskButton variant="contained" onClick={onCreateNewTask}>
-        <AddIcon />
-      </StyledAddTaskButton>
+      {isTaskInputShowed ? (
+        <StyledNewTaskTitle>
+          <StyledNewTaskInput
+            autoFocus
+            variant="standard"
+            value={newTaskTitle}
+            onChange={(e) => setNewTaskTitle(e.target.value)}
+            error={newTaskTitle.length === 0}
+          />
+          <IconButton
+            style={{ marginLeft: '20px' }}
+            color="success"
+            disabled={newTaskTitle.length === 0}
+            onClick={onCreateNewTask}
+          >
+            <DoneIcon />
+          </IconButton>
+          <IconButton
+            style={{ marginLeft: '20px' }}
+            color="error"
+            onClick={() => setIsTaskInputShowed(false)}
+          >
+            <CloseIcon />
+          </IconButton>
+        </StyledNewTaskTitle>
+      ) : (
+        <StyledNewTaskTitle>
+          <StyledAddTaskButton
+            variant="contained"
+            onClick={() => setIsTaskInputShowed(true)}
+          >
+            <AddIcon />
+          </StyledAddTaskButton>
+        </StyledNewTaskTitle>
+      )}
     </StyledTaskListContainer>
   );
 };
