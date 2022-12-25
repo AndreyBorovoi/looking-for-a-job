@@ -20,6 +20,11 @@ const StyledProjectsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '20px',
+  alignItems: 'center',
+  [theme.breakpoints.up('md')]: {
+    width: '350px',
+    marginRight: '40px',
+  },
 }));
 
 const StyledProjectList = styled('div')(({ theme }) => ({
@@ -31,9 +36,9 @@ const StyledProjectList = styled('div')(({ theme }) => ({
 
 const StyledAddNewProject = styled(Button)(({ theme }) => ({
   width: '100%',
+  maxWidth: '250px',
   display: 'flex',
   flexDirection: 'row',
-  height: '35px',
 }));
 
 const StyledNewProjectTitle = styled('div')(({ theme }) => ({
@@ -42,7 +47,6 @@ const StyledNewProjectTitle = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '35px',
 }));
 
 const StyledNewProjectInput = styled(TextField)(({ theme }) => ({
@@ -101,9 +105,17 @@ export const Projects = () => {
           </IconButton>
         </StyledNewProjectTitle>
       ) : (
-        <StyledAddNewProject onClick={() => setIsInputShowed(true)}>
+        <StyledAddNewProject
+          onClick={() => setIsInputShowed(true)}
+          variant="contained"
+        >
           <AddIcon
-            sx={{ marginRight: '10px', height: '16px', width: '16px' }}
+            sx={{
+              marginRight: '10px',
+              marginLeft: '10px',
+              height: '16px',
+              width: '16px',
+            }}
           />
           <div>Новый проект</div>
         </StyledAddNewProject>

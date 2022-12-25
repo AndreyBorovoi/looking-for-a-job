@@ -2,7 +2,6 @@ import { ChangeEventHandler, useEffect, useState } from 'react';
 
 import { styled } from '@mui/material/styles';
 
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
@@ -18,11 +17,17 @@ import { deleteProject, changeProjectTitle } from '../store/projectsSlice';
 import { Empty } from './Empty';
 import { Task } from './Task';
 
-const StyledTaskListContainer = styled(Container)(({ theme }) => ({
+const StyledTaskListContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '20px',
   alignItems: 'center',
+  flexGrow: 1,
+
+  [theme.breakpoints.up('md')]: {
+    height: '100%',
+    maxHeight: '100%',
+  },
 }));
 
 const StyledSelectedProject = styled('div')(({ theme }) => ({
@@ -64,6 +69,11 @@ const StyledTaskList = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   fontSize: '20px',
   alignItems: 'center',
+  [theme.breakpoints.up('md')]: {
+    width: '450px',
+    overflowY: 'auto',
+    overflowX: 'auto',
+  },
 }));
 
 const StyledNewTaskTitle = styled('div')(({ theme }) => ({
@@ -72,7 +82,6 @@ const StyledNewTaskTitle = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '35px',
 }));
 
 const StyledNewTaskInput = styled(TextField)(({ theme }) => ({
@@ -155,7 +164,7 @@ export const TaskList = () => {
   }
 
   return (
-    <StyledTaskListContainer fixed>
+    <StyledTaskListContainer>
       <StyledSelectedProject>
         {isProjectInputShowed ? (
           <StyledSelectedProjectTitleInput
