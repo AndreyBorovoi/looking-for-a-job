@@ -17,7 +17,7 @@ import { deleteProject, changeProjectTitle } from '../store/projectsSlice';
 import { Empty } from './Empty';
 import { Task } from './Task';
 
-const StyledTaskListContainer = styled('div')(({ theme }) => ({
+const TaskListContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '20px',
@@ -30,7 +30,7 @@ const StyledTaskListContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledSelectedProject = styled('div')(({ theme }) => ({
+const SelectedProject = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -40,17 +40,17 @@ const StyledSelectedProject = styled('div')(({ theme }) => ({
   marginBottom: '20px',
 }));
 
-const StyledSelectedProjectTitle = styled('div')(({ theme }) => ({
+const SelectedProjectTitle = styled('div')(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
 }));
 
-const StyledSelectedProjectTitleInput = styled(TextField)(({ theme }) => ({
+const SelectedProjectTitleInput = styled(TextField)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
 }));
 
-const StyledSelectedProjectButtons = styled('div')(({ theme }) => ({
+const SelectedProjectButtons = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'row',
@@ -58,12 +58,12 @@ const StyledSelectedProjectButtons = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const StyledSelectedProjectButton = styled(Button)(({ theme }) => ({
+const SelectedProjectButton = styled(Button)(({ theme }) => ({
   marginLeft: '20px',
   marginRight: '20px',
 }));
 
-const StyledTaskList = styled('div')(({ theme }) => ({
+const Tasks = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -76,7 +76,7 @@ const StyledTaskList = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledNewTaskTitle = styled('div')(({ theme }) => ({
+const NewTaskTitle = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'row',
@@ -84,7 +84,7 @@ const StyledNewTaskTitle = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }));
 
-const StyledNewTaskInput = styled(TextField)(({ theme }) => ({
+const NewTaskInput = styled(TextField)(({ theme }) => ({
   width: '100%',
   maxWidth: '250px',
   marginRight: '10px',
@@ -92,7 +92,7 @@ const StyledNewTaskInput = styled(TextField)(({ theme }) => ({
   fontSize: '20px',
 }));
 
-const StyledAddTaskButton = styled(Button)(({ theme }) => ({
+const AddTaskButton = styled(Button)(({ theme }) => ({
   width: '50px',
   height: '50px',
   display: 'flex',
@@ -157,17 +157,17 @@ export const TaskList = () => {
 
   if (!selectedProject) {
     return (
-      <StyledTaskListContainer>
+      <TaskListContainer>
         <Empty />
-      </StyledTaskListContainer>
+      </TaskListContainer>
     );
   }
 
   return (
-    <StyledTaskListContainer>
-      <StyledSelectedProject>
+    <TaskListContainer>
+      <SelectedProject>
         {isProjectInputShowed ? (
-          <StyledSelectedProjectTitleInput
+          <SelectedProjectTitleInput
             variant="standard"
             onBlur={onTitleInputBlur}
             autoFocus
@@ -176,26 +176,24 @@ export const TaskList = () => {
             error={newProjectTitle.length === 0}
           />
         ) : (
-          <StyledSelectedProjectTitle
-            onClick={() => setIsProjectInputShowed(true)}
-          >
+          <SelectedProjectTitle onClick={() => setIsProjectInputShowed(true)}>
             {selectedProject.title}
-          </StyledSelectedProjectTitle>
+          </SelectedProjectTitle>
         )}
-        <StyledSelectedProjectButtons>
-          <StyledSelectedProjectButton onClick={onDeleteProject}>
+        <SelectedProjectButtons>
+          <SelectedProjectButton onClick={onDeleteProject}>
             Удалить
-          </StyledSelectedProjectButton>
-        </StyledSelectedProjectButtons>
-      </StyledSelectedProject>
-      <StyledTaskList>
+          </SelectedProjectButton>
+        </SelectedProjectButtons>
+      </SelectedProject>
+      <Tasks>
         {selectedTasks.map((task) => {
           return <Task key={task.id} {...task} />;
         })}
-      </StyledTaskList>
+      </Tasks>
       {isTaskInputShowed ? (
-        <StyledNewTaskTitle>
-          <StyledNewTaskInput
+        <NewTaskTitle>
+          <NewTaskInput
             autoFocus
             variant="standard"
             value={newTaskTitle}
@@ -217,17 +215,17 @@ export const TaskList = () => {
           >
             <CloseIcon />
           </IconButton>
-        </StyledNewTaskTitle>
+        </NewTaskTitle>
       ) : (
-        <StyledNewTaskTitle>
-          <StyledAddTaskButton
+        <NewTaskTitle>
+          <AddTaskButton
             variant="contained"
             onClick={() => setIsTaskInputShowed(true)}
           >
             <AddIcon />
-          </StyledAddTaskButton>
-        </StyledNewTaskTitle>
+          </AddTaskButton>
+        </NewTaskTitle>
       )}
-    </StyledTaskListContainer>
+    </TaskListContainer>
   );
 };

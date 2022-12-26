@@ -8,7 +8,7 @@ import {
 import { closeDrawer } from '../../store/drawerSlice';
 import { useAppDispatch } from '../../store/hooks';
 
-const StyledProject = styled('div')(({ theme }) => ({
+const ProjectContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   paddingLeft: '24px',
@@ -18,7 +18,7 @@ const StyledProject = styled('div')(({ theme }) => ({
   marginBottom: '10px',
 }));
 
-const StyledProjectName = styled(Button)(({ theme }) => ({
+const ProjectName = styled(Button)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
 }));
@@ -36,13 +36,13 @@ export const Project = ({
   };
 
   return (
-    <StyledProject>
-      <StyledProjectName
+    <ProjectContainer>
+      <ProjectName
         variant={selected ? 'contained' : 'outlined'}
         onClick={onClick}
       >
         {title}
-      </StyledProjectName>
-    </StyledProject>
+      </ProjectName>
+    </ProjectContainer>
   );
 };

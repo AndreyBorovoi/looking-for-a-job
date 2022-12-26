@@ -15,7 +15,7 @@ import { Project } from './Project';
 
 import { createProject } from '../store/projectsSlice';
 
-const StyledProjectsContainer = styled('div')(({ theme }) => ({
+const ProjectsContainer = styled('div')(({ theme }) => ({
   width: '300px',
   display: 'flex',
   flexDirection: 'column',
@@ -31,7 +31,7 @@ const StyledProjectsContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledProjectList = styled('div')(({ theme }) => ({
+const ProjectList = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -43,14 +43,14 @@ const StyledProjectList = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledAddNewProject = styled(Button)(({ theme }) => ({
+const AddNewProject = styled(Button)(({ theme }) => ({
   width: '100%',
   maxWidth: '250px',
   display: 'flex',
   flexDirection: 'row',
 }));
 
-const StyledNewProjectTitle = styled('div')(({ theme }) => ({
+const NewProjectTitle = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'row',
@@ -58,7 +58,7 @@ const StyledNewProjectTitle = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }));
 
-const StyledNewProjectInput = styled(TextField)(({ theme }) => ({
+const NewProjectInput = styled(TextField)(({ theme }) => ({
   width: '100%',
   maxWidth: '250px',
   marginRight: '10px',
@@ -84,10 +84,10 @@ export const Projects = () => {
   };
 
   return (
-    <StyledProjectsContainer>
+    <ProjectsContainer>
       {isInputShowed ? (
-        <StyledNewProjectTitle>
-          <StyledNewProjectInput
+        <NewProjectTitle>
+          <NewProjectInput
             autoFocus
             variant="standard"
             value={newProjectTitle}
@@ -109,9 +109,9 @@ export const Projects = () => {
           >
             <CloseIcon />
           </IconButton>
-        </StyledNewProjectTitle>
+        </NewProjectTitle>
       ) : (
-        <StyledAddNewProject
+        <AddNewProject
           onClick={() => setIsInputShowed(true)}
           variant="contained"
         >
@@ -124,9 +124,9 @@ export const Projects = () => {
             }}
           />
           <div>Новый проект</div>
-        </StyledAddNewProject>
+        </AddNewProject>
       )}
-      <StyledProjectList>
+      <ProjectList>
         {projectList.map(({ id, title }) => {
           return (
             <Project
@@ -137,7 +137,7 @@ export const Projects = () => {
             />
           );
         })}
-      </StyledProjectList>
-    </StyledProjectsContainer>
+      </ProjectList>
+    </ProjectsContainer>
   );
 };

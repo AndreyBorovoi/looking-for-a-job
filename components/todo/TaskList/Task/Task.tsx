@@ -16,7 +16,7 @@ import {
   Task as TaskProps,
 } from '../../store/tasksSlice';
 
-const StyledTask = styled('div')(({ theme }) => ({
+const TaskContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   paddingLeft: '24px',
@@ -27,7 +27,7 @@ const StyledTask = styled('div')(({ theme }) => ({
   width: '100%',
 }));
 
-const StyledTaskTitle = styled(Button)(({ theme }) => ({
+const TaskTitle = styled(Button)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'left',
   overflow: 'hidden',
@@ -41,7 +41,7 @@ const StyledCheckbox = styled(Checkbox)(({ theme }) => ({
   marginRight: '20px',
 }));
 
-const StyledInput = styled(TextField)(({ theme }) => ({
+const Input = styled(TextField)(({ theme }) => ({
   flexGrow: 1,
 }));
 
@@ -79,10 +79,10 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
   };
 
   return (
-    <StyledTask>
+    <TaskContainer>
       <StyledCheckbox checked={isDone} onClick={onCheckboxClick} />
       {isInputShowed ? (
-        <StyledInput
+        <Input
           variant="standard"
           onBlur={onTitleInputBlur}
           value={newTitle}
@@ -91,9 +91,7 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
           error={newTitle.length === 0}
         />
       ) : (
-        <StyledTaskTitle onClick={() => setIsInputShowed(true)}>
-          {title}
-        </StyledTaskTitle>
+        <TaskTitle onClick={() => setIsInputShowed(true)}>{title}</TaskTitle>
       )}
       <IconButton
         onClick={onDeleteTask}
@@ -102,6 +100,6 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
       >
         <BackspaceIcon />
       </IconButton>
-    </StyledTask>
+    </TaskContainer>
   );
 };

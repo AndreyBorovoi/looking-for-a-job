@@ -9,7 +9,7 @@ import { Header } from '../Header';
 import { Projects } from '../Projects';
 import { TaskList } from '../TaskList';
 
-const StyledRoot = styled('div')(({ theme }) => ({
+const Root = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -35,6 +35,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
     flexDirection: 'row',
     height: 'calc( 100% - 60px)',
     flexGrow: 1,
+    paddingBottom: '60px',
   },
 }));
 
@@ -43,13 +44,13 @@ export const App = () => {
 
   return (
     <Provider store={store}>
-      <StyledRoot>
+      <Root>
         <Header isDesktop={isDesktop} />
         <StyledContainer fixed>
           {isDesktop && <Projects />}
           <TaskList />
         </StyledContainer>
-      </StyledRoot>
+      </Root>
     </Provider>
   );
 };

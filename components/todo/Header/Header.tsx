@@ -10,7 +10,7 @@ import { Projects } from '../Projects';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { closeDrawer, openDrawer } from '../store/drawerSlice';
 
-const StyledHeader = styled(Container)(({ theme }) => ({
+const HeaderContainer = styled(Container)(({ theme }) => ({
   height: '40px',
   display: 'flex',
   flexDirection: 'row-reverse',
@@ -25,7 +25,7 @@ export const Header = ({ isDesktop }: { isDesktop: boolean }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <StyledHeader fixed>
+    <HeaderContainer fixed>
       {isDesktop ? null : (
         <>
           <IconButton onClick={() => dispatch(openDrawer())}>
@@ -41,6 +41,6 @@ export const Header = ({ isDesktop }: { isDesktop: boolean }) => {
           </SwipeableDrawer>
         </>
       )}
-    </StyledHeader>
+    </HeaderContainer>
   );
 };
