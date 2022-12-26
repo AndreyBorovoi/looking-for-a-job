@@ -1,5 +1,6 @@
 import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import store from '../store/store';
 import { Provider } from 'react-redux';
@@ -38,12 +39,14 @@ const StyledContainer = styled(Container)(({ theme }) => ({
 }));
 
 export const App = () => {
+  const isDesktop = useMediaQuery('(min-width:900px)');
+
   return (
     <Provider store={store}>
       <StyledRoot>
-        <Header />
+        <Header isDesktop={isDesktop} />
         <StyledContainer fixed>
-          <Projects />
+          {isDesktop && <Projects />}
           <TaskList />
         </StyledContainer>
       </StyledRoot>

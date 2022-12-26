@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import projectsReducer from './projectsSlice';
 import tasksReducer from './tasksSlice';
+import drawerReducer from './drawerSlice';
 
 const store = configureStore({
   reducer: {
     projects: projectsReducer,
     taskts: tasksReducer,
+    drawer: drawerReducer,
   },
 });
 

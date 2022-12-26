@@ -5,6 +5,7 @@ import {
   selectProject,
   Project as ProjectType,
 } from '../../store/projectsSlice';
+import { closeDrawer } from '../../store/drawerSlice';
 import { useAppDispatch } from '../../store/hooks';
 
 const StyledProject = styled('div')(({ theme }) => ({
@@ -22,16 +23,26 @@ const StyledProjectName = styled(Button)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export const Project = ({ id, title }: ProjectType) => {
+export const Project = ({
+  id,
+  title,
+  selected,
+}: ProjectType & { selected: boolean }) => {
   const dispatch = useAppDispatch();
 
   const onClick = () => {
+    dispatch(closeDrawer());
     dispatch(selectProject({ id: id }));
   };
 
   return (
     <StyledProject>
-      <StyledProjectName onClick={onClick}>{title}</StyledProjectName>
+      <StyledProjectName
+        variant={selected ? 'contained' : 'outlined'}
+        onClick={onClick}
+      >
+        {title}
+      </StyledProjectName>
     </StyledProject>
   );
 };

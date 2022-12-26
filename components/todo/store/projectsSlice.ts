@@ -7,7 +7,7 @@ export type Project = {
 
 type SelectProjectAction = Pick<Project, 'id'>;
 
-type AddNewProjectAction = Pick<Project, 'title'>;
+type CreateProjectAction = Pick<Project, 'title'>;
 
 type DeleteProjectAction = Pick<Project, 'id'>;
 
@@ -23,13 +23,14 @@ export const projectsSlice = createSlice({
     selectProject: (state, action: PayloadAction<SelectProjectAction>) => {
       state.selectedProjectId = action.payload.id;
     },
-    addNewProject: (state, action: PayloadAction<AddNewProjectAction>) => {
+    createProject: (state, action: PayloadAction<CreateProjectAction>) => {
       const ids = state.projectList.map((value) => value.id);
       const newProject: Project = {
         id: ids.length > 0 ? Math.max(...ids) + 1 : 0,
         title: action.payload.title,
       };
-      state.projectList.push(newProject);
+      state.projectList.unshift(newProject);
+      state.selectedProjectId = newProject.id;
     },
     deleteProject: (state, action: PayloadAction<DeleteProjectAction>) => {
       state.selectedProjectId = null;
@@ -50,7 +51,7 @@ export const projectsSlice = createSlice({
 });
 
 export const {
-  addNewProject,
+  createProject,
   deleteProject,
   selectProject,
   changeProjectTitle,

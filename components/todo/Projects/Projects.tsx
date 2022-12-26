@@ -13,15 +13,19 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { Project } from './Project';
 
-import { addNewProject } from '../store/projectsSlice';
+import { createProject } from '../store/projectsSlice';
 
 const StyledProjectsContainer = styled('div')(({ theme }) => ({
-  width: '100%',
+  width: '300px',
   display: 'flex',
   flexDirection: 'column',
   fontSize: '20px',
   alignItems: 'center',
+  marginTop: '40px',
+  marginBottom: '40px',
   [theme.breakpoints.up('md')]: {
+    marginTop: '0px',
+    marginBottom: '0px',
     width: '350px',
     marginRight: '40px',
   },
@@ -31,7 +35,12 @@ const StyledProjectList = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
-  marginBottom: '20px',
+  marginTop: '30px',
+  overflowX: 'auto',
+  [theme.breakpoints.up('md')]: {
+    flexGrow: 1,
+    overflowY: 'auto',
+  },
 }));
 
 const StyledAddNewProject = styled(Button)(({ theme }) => ({
@@ -58,7 +67,9 @@ const StyledNewProjectInput = styled(TextField)(({ theme }) => ({
 }));
 
 export const Projects = () => {
-  const { projectList } = useAppSelector((state) => state.projects);
+  const { projectList, selectedProjectId } = useAppSelector(
+    (state) => state.projects
+  );
   const dispatch = useAppDispatch();
 
   const [isInputShowed, setIsInputShowed] = useState(false);
@@ -67,18 +78,13 @@ export const Projects = () => {
   const addNewProj = () => {
     setIsInputShowed(false);
     if (newProjectTitle) {
-      dispatch(addNewProject({ title: newProjectTitle }));
+      dispatch(createProject({ title: newProjectTitle }));
       setNewProjectTitle('');
     }
   };
 
   return (
     <StyledProjectsContainer>
-      <StyledProjectList>
-        {projectList.map(({ id, title }) => {
-          return <Project key={id} title={title} id={id} />;
-        })}
-      </StyledProjectList>
       {isInputShowed ? (
         <StyledNewProjectTitle>
           <StyledNewProjectInput
@@ -120,6 +126,18 @@ export const Projects = () => {
           <div>Новый проект</div>
         </StyledAddNewProject>
       )}
+      <StyledProjectList>
+        {projectList.map(({ id, title }) => {
+          return (
+            <Project
+              key={id}
+              title={title}
+              id={id}
+              selected={id === selectedProjectId}
+            />
+          );
+        })}
+      </StyledProjectList>
     </StyledProjectsContainer>
   );
 };
