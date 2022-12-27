@@ -2,6 +2,8 @@ import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import { css } from '@emotion/react';
+
 import store from '../store/store';
 import { Provider } from 'react-redux';
 
@@ -14,7 +16,6 @@ const Root = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'flex-start',
-
   [theme.breakpoints.up('md')]: {
     minHeight: '100vh',
     minWidth: '100vw',
@@ -26,6 +27,21 @@ const Root = styled('div')(({ theme }) => ({
     flexWrap: 'wrap',
   },
 }));
+
+const StyledRoot = styled(Root)`
+  *::-webkit-scrollbar {
+    background: none;
+    width: 5px;
+  }
+  *::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+  }
+`;
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
@@ -44,13 +60,13 @@ export const App = () => {
 
   return (
     <Provider store={store}>
-      <Root>
+      <StyledRoot>
         <Header isDesktop={isDesktop} />
         <StyledContainer fixed>
           {isDesktop && <Projects />}
           <TaskList />
         </StyledContainer>
-      </Root>
+      </StyledRoot>
     </Provider>
   );
 };
