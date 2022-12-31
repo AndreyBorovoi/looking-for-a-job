@@ -35,14 +35,23 @@ const TaskTitle = styled(Button)(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
+  [theme.breakpoints.up('md')]: {
+    flexGrow: 0,
+    width: '296px',
+  },
 }));
 
 const StyledCheckbox = styled(Checkbox)(({ theme }) => ({
   marginRight: '20px',
+  padding: 0,
 }));
 
 const Input = styled(TextField)(({ theme }) => ({
   flexGrow: 1,
+  [theme.breakpoints.up('md')]: {
+    flexGrow: 0,
+    width: '296px',
+  },
 }));
 
 export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
@@ -95,7 +104,7 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
       )}
       <IconButton
         onClick={onDeleteTask}
-        style={{ marginLeft: '30px' }}
+        style={{ marginLeft: '30px', padding: 0 }}
         color="default"
       >
         <BackspaceIcon />

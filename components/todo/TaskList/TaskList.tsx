@@ -73,30 +73,36 @@ const Tasks = styled('div')(({ theme }) => ({
     width: '450px',
     overflowY: 'auto',
     overflowX: 'auto',
+    flexGrow: 1,
   },
 }));
 
 const NewTaskTitle = styled('div')(({ theme }) => ({
   width: '100%',
+  height: '50px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
+  paddingLeft: '24px',
+  paddingRight: '24px',
+  marginTop: '36px',
+  [theme.breakpoints.up('md')]: {
+    width: '438px',
+    marginRight: '4px',
+  },
 }));
 
 const NewTaskInput = styled(TextField)(({ theme }) => ({
   width: '100%',
-  maxWidth: '250px',
-  marginRight: '10px',
-  marginLeft: '10px',
   fontSize: '20px',
 }));
 
 const AddTaskButton = styled(Button)(({ theme }) => ({
-  width: '50px',
+  width: '100%',
   height: '50px',
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
 }));
@@ -223,6 +229,7 @@ export const TaskList = () => {
             onClick={() => setIsTaskInputShowed(true)}
           >
             <AddIcon />
+            <div>Новая задача</div>
           </AddTaskButton>
         </NewTaskTitle>
       )}

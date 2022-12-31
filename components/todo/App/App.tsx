@@ -52,6 +52,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
     height: 'calc( 100% - 60px)',
     flexGrow: 1,
     paddingBottom: '60px',
+    maxHeight: '1000px',
   },
 }));
 

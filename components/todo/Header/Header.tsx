@@ -11,7 +11,7 @@ import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { closeDrawer, openDrawer } from '../store/drawerSlice';
 
 const HeaderContainer = styled(Container)(({ theme }) => ({
-  height: '40px',
+  height: '80px',
   display: 'flex',
   flexDirection: 'row-reverse',
   [theme.breakpoints.up('md')]: {
@@ -29,7 +29,7 @@ export const Header = ({ isDesktop }: { isDesktop: boolean }) => {
       {isDesktop ? null : (
         <>
           <IconButton onClick={() => dispatch(openDrawer())}>
-            <MenuIcon />
+            <MenuIcon sx={{ width: '40px', height: '40px' }} />
           </IconButton>
           <SwipeableDrawer
             anchor="left"

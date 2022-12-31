@@ -44,25 +44,29 @@ const ProjectList = styled('div')(({ theme }) => ({
 }));
 
 const AddNewProject = styled(Button)(({ theme }) => ({
-  width: '100%',
-  maxWidth: '250px',
+  width: '252px',
+  height: '40px',
   display: 'flex',
   flexDirection: 'row',
+  [theme.breakpoints.up('md')]: {
+    width: '302px',
+  },
 }));
 
 const NewProjectTitle = styled('div')(({ theme }) => ({
-  width: '100%',
+  width: '252px',
+  height: '40px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
+  [theme.breakpoints.up('md')]: {
+    width: '302px',
+  },
 }));
 
 const NewProjectInput = styled(TextField)(({ theme }) => ({
   width: '100%',
-  maxWidth: '250px',
-  marginRight: '10px',
-  marginLeft: '10px',
   fontSize: '20px',
 }));
 
@@ -95,7 +99,7 @@ export const Projects = () => {
             error={newProjectTitle.length === 0}
           />
           <IconButton
-            style={{ marginLeft: '20px' }}
+            style={{ marginLeft: '10px', padding: 0 }}
             color="success"
             disabled={newProjectTitle.length === 0}
             onClick={addNewProj}
@@ -103,7 +107,7 @@ export const Projects = () => {
             <DoneIcon />
           </IconButton>
           <IconButton
-            style={{ marginLeft: '20px' }}
+            style={{ marginLeft: '10px', padding: 0 }}
             color="error"
             onClick={() => setIsInputShowed(false)}
           >
