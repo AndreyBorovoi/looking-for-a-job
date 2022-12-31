@@ -37,7 +37,7 @@ const cards: Omit<CardProps, 'translateY' | 'color'>[] = [
     icon: <Folder />,
     title: 'Hard skills',
     description: '',
-    list: ['Frontend', 'Backend', 'REST API', 'Graphql', 'Git', 'English B1'],
+    list: ['React', 'Node.js', 'Docker', 'Graphql', 'Git', 'English B2'],
   },
 ];
 

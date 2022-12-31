@@ -17,13 +17,13 @@ type PointType = {
 const points: PointType[] = [
   {
     key: 1,
-    number: '3',
+    number: '4',
     text: 'Года опыта',
     description: 'Работал над различными проектами',
   },
   {
     key: 2,
-    number: '4000+',
+    number: '6000+',
     text: 'Коммитов',
     description: <>Решил большое количество бизнес&#8209;задач</>,
   },
