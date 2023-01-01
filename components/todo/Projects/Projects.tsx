@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Project } from './Project';
 
 import { createProject } from '../store/projectsSlice';
+import { closeDrawer } from '../store/drawerSlice';
 
 const ProjectsContainer = styled('div')(({ theme }) => ({
   width: '300px',
@@ -82,6 +83,7 @@ export const Projects = () => {
   const addNewProj = () => {
     setIsInputShowed(false);
     if (newProjectTitle) {
+      dispatch(closeDrawer());
       dispatch(createProject({ title: newProjectTitle }));
       setNewProjectTitle('');
     }

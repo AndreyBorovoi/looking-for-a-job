@@ -1,6 +1,8 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
 
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
+
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -69,11 +71,13 @@ const Tasks = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   fontSize: '20px',
   alignItems: 'center',
+  marginBottom: '36px',
   [theme.breakpoints.up('md')]: {
     width: '450px',
     overflowY: 'auto',
     overflowX: 'auto',
     flexGrow: 1,
+    marginBottom: '0',
   },
 }));
 
@@ -86,10 +90,14 @@ const NewTaskTitle = styled('div')(({ theme }) => ({
   alignItems: 'center',
   paddingLeft: '24px',
   paddingRight: '24px',
-  marginTop: '36px',
+
+  marginBottom: '36px',
   [theme.breakpoints.up('md')]: {
     width: '438px',
     marginRight: '4px',
+    marginTop: '36px',
+    marginBottom: '0',
+    minHeight: '50px',
   },
 }));
 
@@ -108,6 +116,8 @@ const AddTaskButton = styled(Button)(({ theme }) => ({
 }));
 
 export const TaskList = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { selectedProjectId, projectList } = useAppSelector(
     (state) => state.projects
   );
@@ -192,11 +202,14 @@ export const TaskList = () => {
           </SelectedProjectButton>
         </SelectedProjectButtons>
       </SelectedProject>
-      <Tasks>
-        {selectedTasks.map((task) => {
-          return <Task key={task.id} {...task} />;
-        })}
-      </Tasks>
+      {!isMobile && (
+        <Tasks>
+          {selectedTasks.map((task) => {
+            return <Task key={task.id} {...task} />;
+          })}
+        </Tasks>
+      )}
+
       {isTaskInputShowed ? (
         <NewTaskTitle>
           <NewTaskInput
@@ -207,7 +220,7 @@ export const TaskList = () => {
             error={newTaskTitle.length === 0}
           />
           <IconButton
-            style={{ marginLeft: '20px' }}
+            style={{ marginLeft: '20px', padding: 0 }}
             color="success"
             disabled={newTaskTitle.length === 0}
             onClick={onCreateNewTask}
@@ -215,7 +228,7 @@ export const TaskList = () => {
             <DoneIcon />
           </IconButton>
           <IconButton
-            style={{ marginLeft: '20px' }}
+            style={{ marginLeft: '20px', padding: 0 }}
             color="error"
             onClick={() => setIsTaskInputShowed(false)}
           >
@@ -232,6 +245,13 @@ export const TaskList = () => {
             <div>Новая задача</div>
           </AddTaskButton>
         </NewTaskTitle>
+      )}
+      {isMobile && (
+        <Tasks>
+          {selectedTasks.map((task) => {
+            return <Task key={task.id} {...task} />;
+          })}
+        </Tasks>
       )}
     </TaskListContainer>
   );
