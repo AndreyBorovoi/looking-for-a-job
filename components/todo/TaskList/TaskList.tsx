@@ -83,7 +83,7 @@ const Tasks = styled('div')(({ theme }) => ({
 
 const NewTaskTitle = styled('div')(({ theme }) => ({
   width: '100%',
-  height: '50px',
+  height: '40px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
@@ -97,7 +97,7 @@ const NewTaskTitle = styled('div')(({ theme }) => ({
     marginRight: '4px',
     marginTop: '36px',
     marginBottom: '0',
-    minHeight: '50px',
+    minHeight: '40px',
   },
 }));
 
@@ -108,7 +108,7 @@ const NewTaskInput = styled(TextField)(({ theme }) => ({
 
 const AddTaskButton = styled(Button)(({ theme }) => ({
   width: '100%',
-  height: '50px',
+  height: '40px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',

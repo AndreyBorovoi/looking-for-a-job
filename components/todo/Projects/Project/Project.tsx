@@ -11,11 +11,12 @@ import { useAppDispatch } from '../../store/hooks';
 const ProjectContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
-  paddingLeft: '24px',
-  paddingRight: '24px',
   alignItems: 'center',
   justifyContent: 'space-between',
   marginBottom: '10px',
+  [theme.breakpoints.up('md')]: {
+    width: '300px',
+  },
 }));
 
 const ProjectName = styled(Button)(({ theme }) => ({

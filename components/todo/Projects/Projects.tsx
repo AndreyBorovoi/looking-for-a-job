@@ -21,13 +21,13 @@ const ProjectsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '20px',
-  alignItems: 'center',
+  alignItems: 'start',
   marginTop: '40px',
   marginBottom: '40px',
   [theme.breakpoints.up('md')]: {
     marginTop: '0px',
     marginBottom: '0px',
-    width: '350px',
+    width: '360px',
     marginRight: '40px',
   },
 }));
@@ -37,10 +37,10 @@ const ProjectList = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   marginTop: '30px',
-  overflowX: 'auto',
   [theme.breakpoints.up('md')]: {
     flexGrow: 1,
     overflowY: 'auto',
+    width: '320px',
   },
 }));
 
@@ -50,7 +50,8 @@ const AddNewProject = styled(Button)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   [theme.breakpoints.up('md')]: {
-    width: '302px',
+    width: '300px',
+    minHeight: '40px',
   },
 }));
 
@@ -62,7 +63,8 @@ const NewProjectTitle = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   [theme.breakpoints.up('md')]: {
-    width: '302px',
+    width: '300px',
+    minHeight: '40px',
   },
 }));
 

@@ -2,8 +2,6 @@ import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { css } from '@emotion/react';
-
 import store from '../store/store';
 import { Provider } from 'react-redux';
 
@@ -40,6 +38,11 @@ const StyledRoot = styled(Root)`
   *::-webkit-scrollbar-thumb {
     background: #cccccc;
     border-radius: 10px;
+  }
+
+  * {
+    scrollbar-color: #fff #cccccc;
+    scrollbar-width: thin;
   }
 `;
 

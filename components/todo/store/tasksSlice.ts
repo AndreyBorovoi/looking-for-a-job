@@ -2,13 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Task = {
   id: number;
-  // parentId: number|null;
   projectId: number;
   title: string;
-  // description: string|null;
   isDone: boolean;
-  // tags: string[];
-  // date: Date|null;
 };
 
 type AddNewTaskAction = Pick<Task, 'projectId' | 'title'>;
@@ -33,7 +29,7 @@ export const tasksSlice = createSlice({
         projectId: action.payload.projectId,
         title: action.payload.title,
       };
-      state.taskList.push(newTask);
+      state.taskList.unshift(newTask);
     },
     deleteTask: (state, action: PayloadAction<DeleteTaskAction>) => {
       state.taskList = state.taskList.filter((v) => v.id !== action.payload.id);
