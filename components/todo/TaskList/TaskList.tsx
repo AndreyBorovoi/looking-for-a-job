@@ -45,11 +45,24 @@ const SelectedProject = styled('div')(({ theme }) => ({
 const SelectedProjectTitle = styled('div')(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
+  maxWidth: '100%',
+  minHeight: '60px',
+  wordWrap: 'break-word',
+  [theme.breakpoints.up('md')]: {
+    maxWidth: '390px',
+  },
 }));
 
 const SelectedProjectTitleInput = styled(TextField)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
+  width: '80%',
+  minHeight: '60px',
+  fontSize: '30px',
+  [theme.breakpoints.up('md')]: {
+    width: '390px',
+    maxWidth: '390px',
+  },
 }));
 
 const SelectedProjectButtons = styled('div')(({ theme }) => ({
@@ -190,6 +203,7 @@ export const TaskList = () => {
             value={newProjectTitle}
             onChange={onChangeProjectTitle}
             error={newProjectTitle.length === 0}
+            multiline
           />
         ) : (
           <SelectedProjectTitle onClick={() => setIsProjectInputShowed(true)}>

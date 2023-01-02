@@ -104,7 +104,11 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
 
   return (
     <TaskContainer>
-      <StyledCheckbox checked={isDone} onClick={onCheckboxClick} />
+      <StyledCheckbox
+        style={{ marginBottom: '9px' }}
+        checked={isDone}
+        onClick={onCheckboxClick}
+      />
       {isInputShowed ? (
         <Input
           variant="standard"
@@ -122,7 +126,7 @@ export const Task = ({ id, projectId, isDone, title }: TaskProps) => {
       )}
       <IconButton
         onClick={onDeleteTask}
-        style={{ marginLeft: '30px', padding: 0 }}
+        style={{ marginLeft: '30px', padding: 0, marginBottom: '9px' }}
         color="default"
       >
         <BackspaceIcon />
