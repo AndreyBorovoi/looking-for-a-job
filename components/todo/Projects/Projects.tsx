@@ -21,7 +21,7 @@ const ProjectsContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '20px',
-  alignItems: 'start',
+  alignItems: 'center',
   marginTop: '40px',
   marginBottom: '40px',
   [theme.breakpoints.up('md')]: {
@@ -29,6 +29,7 @@ const ProjectsContainer = styled('div')(({ theme }) => ({
     marginBottom: '0px',
     width: '360px',
     marginRight: '40px',
+    alignItems: 'start',
   },
 }));
 
@@ -36,11 +37,13 @@ const ProjectList = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   marginTop: '30px',
   [theme.breakpoints.up('md')]: {
     flexGrow: 1,
     overflowY: 'auto',
     width: '320px',
+    alignItems: 'start',
   },
 }));
 

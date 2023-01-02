@@ -14,6 +14,7 @@ const ProjectContainer = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   marginBottom: '10px',
+  width: '252px',
   [theme.breakpoints.up('md')]: {
     width: '300px',
   },
