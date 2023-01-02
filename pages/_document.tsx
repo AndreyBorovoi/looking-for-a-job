@@ -6,18 +6,18 @@ import createEmotionCache from '../utility/createEmotionCache';
 
 const style = `
   *::-webkit-scrollbar {
-    background: none;
+    background: #b3b3b3;
     width: 5px;
   }
   *::-webkit-scrollbar-track {
-    background: none;
+    background: #b3b3b3;
   }
   *::-webkit-scrollbar-thumb {
-    background: #cccccc;
+    background: #999999;
     border-radius: 10px;
   }
   * {
-    scrollbar-color: #fff #cccccc;
+    scrollbar-color: #b3b3b3 #999999;
     scrollbar-width: thin;
   }
 `;
