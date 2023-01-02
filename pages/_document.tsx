@@ -4,6 +4,23 @@ import createEmotionServer from '@emotion/server/create-instance';
 
 import createEmotionCache from '../utility/createEmotionCache';
 
+const style = `
+  *::-webkit-scrollbar {
+    background: none;
+    width: 5px;
+  }
+  *::-webkit-scrollbar-track {
+    background: none;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+  }
+  * {
+    scrollbar-color: #fff #cccccc;
+    scrollbar-width: thin;
+  }
+`;
 export default class MyDocument extends Document {
   render() {
     return (
@@ -13,6 +30,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <style type="text/css">{style}</style>
         </Head>
         <body>
           <Main />

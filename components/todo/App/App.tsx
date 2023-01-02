@@ -26,26 +26,6 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledRoot = styled(Root)`
-  *::-webkit-scrollbar {
-    background: none;
-    width: 5px;
-  }
-  *::-webkit-scrollbar-track {
-    background: none;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: #cccccc;
-    border-radius: 10px;
-  }
-
-  * {
-    scrollbar-color: #fff #cccccc;
-    scrollbar-width: thin;
-  }
-`;
-
 const StyledContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -64,13 +44,13 @@ export const App = () => {
 
   return (
     <Provider store={store}>
-      <StyledRoot>
+      <Root>
         <Header isDesktop={isDesktop} />
         <StyledContainer fixed>
           {isDesktop && <Projects />}
           <TaskList />
         </StyledContainer>
-      </StyledRoot>
+      </Root>
     </Provider>
   );
 };
