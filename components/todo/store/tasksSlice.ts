@@ -13,12 +13,25 @@ type DeleteTaskAction = Pick<Task, 'id'>;
 type ChangeTitleAction = Pick<Task, 'id' | 'title'>;
 type DeleteTasksByProjectIdAction = Pick<Task, 'projectId'>;
 
+const initialTaskList: Task[] = [
+  { id: 1, projectId: 1, title: 'Молоко', isDone: false },
+  { id: 2, projectId: 1, title: 'Огурцы', isDone: false },
+  { id: 3, projectId: 1, title: 'Сок', isDone: false },
+  { id: 4, projectId: 1, title: 'Помидоры', isDone: false },
+  { id: 5, projectId: 1, title: 'Чай', isDone: false },
+  { id: 6, projectId: 1, title: 'Кофе', isDone: false },
+  { id: 7, projectId: 1, title: 'Пирог', isDone: false },
+  { id: 8, projectId: 1, title: 'Конфеты', isDone: false },
+  { id: 9, projectId: 1, title: 'Картошка', isDone: false },
+  { id: 10, projectId: 1, title: 'Макароны', isDone: false },
+  { id: 11, projectId: 1, title: 'Пельмени', isDone: false },
+  { id: 12, projectId: 1, title: 'Мясо', isDone: false },
+];
+
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
-    taskList: [
-      { id: 1, projectId: 1, title: 'test task', isDone: false },
-    ] as Task[],
+    taskList: initialTaskList,
   },
   reducers: {
     addNewTask: (state, action: PayloadAction<AddNewTaskAction>) => {

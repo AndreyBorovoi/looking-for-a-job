@@ -13,11 +13,13 @@ type DeleteProjectAction = Pick<Project, 'id'>;
 
 type ChangeProjectTitleAction = Pick<Project, 'id' | 'title'>;
 
+const initialProjectList: Project[] = [{ id: 1, title: 'Продукты' }];
+
 export const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
     selectedProjectId: null as Project['id'] | null,
-    projectList: [{ id: 1, title: 'test' }] as Project[],
+    projectList: initialProjectList,
   },
   reducers: {
     selectProject: (state, action: PayloadAction<SelectProjectAction>) => {
