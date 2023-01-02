@@ -20,9 +20,14 @@ const ProjectContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const ProjectName = styled(Button)(({ theme }) => ({
+const ProjectTitle = styled(Button)(({ theme }) => ({
   flexGrow: 1,
   textAlign: 'center',
+}));
+
+const ProjectTitleText = styled('div')(({ theme }) => ({
+  maxWidth: '100%',
+  wordWrap: 'break-word',
 }));
 
 export const Project = ({
@@ -39,12 +44,12 @@ export const Project = ({
 
   return (
     <ProjectContainer>
-      <ProjectName
+      <ProjectTitle
         variant={selected ? 'contained' : 'outlined'}
         onClick={onClick}
       >
-        {title}
-      </ProjectName>
+        <ProjectTitleText>{title}</ProjectTitleText>
+      </ProjectTitle>
     </ProjectContainer>
   );
 };
