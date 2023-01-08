@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-export const useVisibility = (id: string, threshold: number = 0.5) => {
+export const useVisibility = (
+  id: string,
+  threshold: number = 0.5,
+  mobileThreshold: number = 0.2
+) => {
   const [visibility, setVisibility] = useState(false);
+  const isDesktop = useMediaQuery('(min-width:900px)');
 
   useEffect(() => {
     let options = {
       root: null,
-      threshold: threshold,
+      threshold: isDesktop ? threshold : mobileThreshold,
     };
 
     const callback = (entries: any, observer: any) => {
@@ -20,7 +26,7 @@ export const useVisibility = (id: string, threshold: number = 0.5) => {
     return () => {
       observer.disconnect();
     };
-  }, [id, threshold]);
+  }, [id, threshold, isDesktop]);
 
   return visibility;
 };
