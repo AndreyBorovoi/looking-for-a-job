@@ -45,7 +45,7 @@ const colors = ['#dee3ff', '#feefd9', '#feeaea'];
 
 export const Skills = () => {
   const [translate, setTranslate] = useState(0);
-  const visibility = useVisibility('Skills', 0.3);
+  const visibility = useVisibility('Skills', 0.3, 0.1);
 
   useEffect(() => {
     const callback = (event: Event) => {
