@@ -28,11 +28,13 @@ const initialTaskList: Task[] = [
   { id: 12, projectId: 1, title: 'Мясо', isDone: false },
 ];
 
+export const initialState = {
+  taskList: initialTaskList,
+};
+
 export const tasksSlice = createSlice({
   name: 'tasks',
-  initialState: {
-    taskList: initialTaskList,
-  },
+  initialState: initialState,
   reducers: {
     addNewTask: (state, action: PayloadAction<AddNewTaskAction>) => {
       const ids = state.taskList.map((task) => task.id);

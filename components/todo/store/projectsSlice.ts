@@ -15,15 +15,20 @@ type ChangeProjectTitleAction = Pick<Project, 'id' | 'title'>;
 
 const initialProjectList: Project[] = [{ id: 1, title: 'Продукты' }];
 
+export const initialState = {
+  selectedProjectId: null as Project['id'] | null,
+  projectList: initialProjectList,
+};
+
 export const projectsSlice = createSlice({
   name: 'projects',
-  initialState: {
-    selectedProjectId: null as Project['id'] | null,
-    projectList: initialProjectList,
-  },
+  initialState: initialState,
   reducers: {
     selectProject: (state, action: PayloadAction<SelectProjectAction>) => {
-      state.selectedProjectId = action.payload.id;
+      const ids = state.projectList.map((value) => value.id);
+      if (ids.includes(action.payload.id)) {
+        state.selectedProjectId = action.payload.id;
+      }
     },
     createProject: (state, action: PayloadAction<CreateProjectAction>) => {
       const ids = state.projectList.map((value) => value.id);
